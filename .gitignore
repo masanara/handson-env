@@ -1,0 +1,7 @@
+.DS_Store
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+kubeconfig.txt
+key-pair/k8s-handson*
