@@ -7,8 +7,8 @@ resource "kubernetes_service_account" "handson_sa" {
 
 resource "kubernetes_service_account" "aws-load-balancer-controller" {
   metadata {
-    name      = "aws-load-balancer-controller"
-    namespace = "kube-system"
+    name        = "aws-load-balancer-controller"
+    namespace   = "kube-system"
     annotations = {
       "eks.amazonaws.com/role-arn" = "${aws_iam_role.aws-load-balancer-controller.arn}"
     }

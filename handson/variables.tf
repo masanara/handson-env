@@ -17,6 +17,11 @@ variable "eks_cluster_name" {
   default = "prod"
 }
 
+variable "eks_node_number" {
+  type = number
+  default = 1
+}
+
 variable "aws_availability_zones" {
   type = string
   default = "asia-northeast-1a"

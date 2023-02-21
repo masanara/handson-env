@@ -1,6 +1,6 @@
 variable "aws_profile" {
   type    = string
-  default = "handson"
+  default = "default"
 }
 
 variable "aws_region" {

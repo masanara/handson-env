@@ -1,0 +1,8 @@
+aws_profile="handson"
+key_name="handson"
+eks_cluster_name="prod"
+eks_node_number=1
+instance_number=16
+mgmt_ip=["3.112.23.0/29","192.168.0.0/24"]
+ami_id="ami-068e3d6bc44010346"
+public_key="../key-pair/k8s-handson.pub"

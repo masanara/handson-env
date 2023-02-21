@@ -7,6 +7,13 @@ resource "aws_iam_user" "housers" {
   name  = "houser${count.index}"
 }
 
+/*
+resource "time_sleep" "iam_user" {
+  create_duration = "20s"
+  depends_on = [aws_iam_user.housers["${var.instance_number}"]]
+}
+*/
+
 resource "aws_iam_user_login_profile" "profiles" {
   count                   = var.instance_number
   user                    = "houser${count.index}"

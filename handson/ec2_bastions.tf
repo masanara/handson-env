@@ -39,3 +39,7 @@ output "bastion_ids" {
 output "bastion_ips" {
    value = aws_instance.bastions.*.public_ip
 }
+
+output "bastion_names" {
+   value = aws_instance.bastions.*.tags.Name
+}
