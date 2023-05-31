@@ -6,12 +6,12 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_internet_gateway" "gw" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
 }
 
 
 resource "aws_route_table" "public" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   tags = {
     Name = "handson-public"
   }
@@ -19,12 +19,12 @@ resource "aws_route_table" "public" {
 
 resource "aws_route" "public" {
   destination_cidr_block = "0.0.0.0/0"
-  route_table_id         = "${aws_route_table.public.id}"
-  gateway_id             = "${aws_internet_gateway.gw.id}"
+  route_table_id         = aws_route_table.public.id
+  gateway_id             = aws_internet_gateway.gw.id
 }
 
 resource "aws_subnet" "public_1a" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   availability_zone = "ap-northeast-1a"
   cidr_block = "10.0.1.0/24"
   map_public_ip_on_launch = true
@@ -34,14 +34,14 @@ resource "aws_subnet" "public_1a" {
 }
 
 resource "aws_route_table_association" "public_1a" {
-  subnet_id      = "${aws_subnet.public_1a.id}"
-  route_table_id = "${aws_route_table.public.id}"
+  subnet_id      = aws_subnet.public_1a.id
+  route_table_id = aws_route_table.public.id
 }
 
 resource "aws_security_group" "handson" {
   name = "handson"
   description = "Allow Handson Incoming traffic"
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
 
   ingress {
     description = "SSH"
@@ -82,14 +82,14 @@ resource "aws_security_group" "handson" {
 resource "aws_security_group" "handson-init" {
   name = "handson-init"
   description = "Allow Handson init"
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
 
   ingress {
     description = "kubeconfig"
     from_port = 8080
     to_port = 8080
     protocol = "tcp"
-    security_groups = ["${aws_security_group.handson.id}"]
+    security_groups = [aws_security_group.handson.id]
   }
 
   egress {

@@ -9,7 +9,7 @@ resource "aws_instance" "controller" {
   disable_api_termination   = false
   vpc_security_group_ids    = ["${aws_security_group.handson.id}","${aws_security_group.handson-init.id}"]
   monitoring                = true
-  subnet_id                 = "${aws_subnet.public_1a.id}"
+  subnet_id                 = aws_subnet.public_1a.id
   root_block_device {
     delete_on_termination   = true
     volume_size             = 8
